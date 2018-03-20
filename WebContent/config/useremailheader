@@ -1,0 +1,8 @@
+<html>
+	<head>
+    </head>
+    <body>
+    	<h1>您好!很高兴您能够使用Tickets订票系统。</h1>
+        <span>下面是账号验证链接，请在15分钟内完成验证，否则该次注册将失效</span>
+        <br>
+        <a href="http://localhost:8080/myweb/user/checksignup/

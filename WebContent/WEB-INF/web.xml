@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="WebApp_9" version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+ <!--处理从页面传递中文到后台而出现的中文乱码问题 -->  
+      <!-- encoding start -->  
+  <filter>  
+    <filter-name>encodingFilter</filter-name>  
+    <filter-class>                      
+            org.springframework.web.filter.CharacterEncodingFilter    
+        </filter-class>  
+    <init-param>  
+      <param-name>encoding</param-name>  
+      <param-value>UTF-8</param-value>  
+    </init-param>  
+    <init-param>  
+      <param-name>forceEncoding</param-name>  
+      <param-value>true</param-value>  
+    </init-param>  
+  </filter>   
+  <filter-mapping>  
+    <filter-name>encodingFilter</filter-name>  
+    <url-pattern>/*</url-pattern><!-- 对所有文件过滤 -->  
+  </filter-mapping>  
+  <!-- encoding ends -->  
+  
+   <!--定义前端控制器DispatcherServlet -->  
+  <context-param>  
+        <param-name>contextConfigLocation</param-name>  
+        <param-value>/WEB-INF/spring-servlet.xml</param-value>  
+    </context-param>  
+  <servlet>  
+    <servlet-name>spring</servlet-name>  
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>  
+    <init-param>  
+      <param-name>contextConfigLocation</param-name>  
+      <param-value>/WEB-INF/spring-servlet.xml</param-value>  
+    </init-param>  
+    <!--指定启动顺序，为1表示该Servlet会随Servlet容器一起启动-->  
+    <load-on-startup>1</load-on-startup>  
+  </servlet>  
+  <servlet-mapping>  
+    <servlet-name>spring</servlet-name>  
+    <url-pattern>/</url-pattern>  
+  </servlet-mapping>  
+  
+   <!--设置监听器-->  
+    <listener>  
+        <listener-class>  
+            org.springframework.web.context.ContextLoaderListener  
+        </listener-class>  
+    </listener>  
+</web-app>
